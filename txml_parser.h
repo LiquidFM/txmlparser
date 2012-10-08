@@ -21,7 +21,6 @@
  *
  */
 
-
 #ifndef	_TXML_PARSER_H
 #define	_TXML_PARSER_H
 
@@ -42,6 +41,8 @@ void txml_free(txml_node node);
 char* txml_node_get_name(txml_node node);
 
 char* txml_node_get_text(txml_node node);
+
+char* txml_node_get_prop(txml_node node, const char* name);
 
 txml_attr txml_node_get_first_attr(txml_node node);
 

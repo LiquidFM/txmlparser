@@ -20,6 +20,7 @@
  * OTHER DEALINGS IN THE SOFTWARE.
  *
  */
+
 #ifdef __KERNEL__
 #include <linux/slab.h>
 #include <linux/module.h>
@@ -588,6 +589,24 @@ char* txml_node_get_text(txml_node node)
 	struct _txml_node* pxml_node = (struct _txml_node *)node;
 
 	return pxml_node->text.str;
+}
+
+char* txml_node_get_prop(txml_node node, const char* name)
+{
+	struct _txml_node* pxml_node = (struct _txml_node *)node;
+	struct _txml_attr* curr_attr;
+
+	if (pxml_node) {
+		for (curr_attr = pxml_node->attrs; curr_attr != NULL; curr_attr=curr_attr->next)
+		{
+			if (!strcasecmp(curr_attr->name, name))
+			{
+				return curr_attr->value;
+			}
+		}
+	}
+
+	return NULL;
 }
 
 txml_attr txml_node_get_first_attr(txml_node node)
